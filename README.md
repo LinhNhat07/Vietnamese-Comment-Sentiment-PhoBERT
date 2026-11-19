@@ -1,43 +1,81 @@
-# Vietnamese-News-Sentiment-Classification  
-Phân loại cảm xúc tin tức tiếng Việt sử dụng PhoBERT
+<h1 align="center">📰 Vietnamese News Sentiment Classification</h1>
 
-**Vietnamese News Sentiment Classification Using PhoBERT**
+<p align="center">
+  <b>Classifying the sentiment of Vietnamese news articles with a fine-tuned PhoBERT model</b>
+</p>
 
-### Mục tiêu dự án
-Xây dựng một hệ thống xử lý ngôn ngữ tự nhiên (NLP) tiếng Việt tiên tiến nhằm **phân loại cảm xúc** (Tiêu cực - Negative, Trung lập - Neutral, Tích cực - Positive) từ các bài báo trực tuyến. Hệ thống hỗ trợ phân tích dư luận, giám sát truyền thông, theo dõi xu hướng báo chí và ứng dụng trong các lĩnh vực như tài chính, quản lý khủng hoảng truyền thông, nghiên cứu truyền thông số.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch"/>
+  <img src="https://img.shields.io/badge/Hugging%20Face-PhoBERT-FFD21E?style=flat-square&logo=huggingface&logoColor=black" alt="PhoBERT"/>
+  <img src="https://img.shields.io/badge/Selenium-43B02A?style=flat-square&logo=selenium&logoColor=white" alt="Selenium"/>
+</p>
 
-### Công nghệ chính
-- **Mô hình cốt lõi**: Fine-tune **PhoBERT** (mô hình ngôn ngữ tiền huấn luyện dành riêng cho tiếng Việt, dựa trên RoBERTa) sử dụng framework **PyTorch** và thư viện **Hugging Face Transformers**.
-- **Dữ liệu**: Xây dựng bộ dữ liệu tùy chỉnh gồm **18.900 mẫu tin tức** thu thập từ **VnExpress** – một trong những cổng thông tin điện tử uy tín và có lượng truy cập lớn nhất Việt Nam.
-- **Quy trình xử lý**:
-  - Tokenization chuyên biệt cho tiếng Việt (word segmentation tích hợp trong PhoBERT).
-  - Kỹ thuật cân bằng lớp (class balancing) để xử lý dữ liệu mất cân bằng tự nhiên trong tin tức.
-  - Đánh giá đa lớp (multi-class classification) với các chỉ số chuẩn: Accuracy, F1-score (Macro & Weighted), Confusion Matrix.
+---
 
-### Triển khai
-- Thu thập và gắn nhãn dữ liệu tin tức tiếng Việt từ VnExpress (tiêu đề + nội dung bài báo).
-- Fine-tune PhoBERT qua nhiều epoch với các kỹ thuật tối ưu hóa hiện đại (learning rate scheduler, early stopping, gradient accumulation...).
-- Đánh giá mô hình trên tập validation độc lập, phân tích Confusion Matrix chi tiết để xác định hiệu suất theo từng lớp cảm xúc và các trường hợp khó (imbalanced classes).
+## 📌 Overview
 
-### Kết quả đạt được
-Mô hình đạt hiệu suất phân loại mạnh mẽ trên dữ liệu thực tế tiếng Việt:
+An NLP system that classifies Vietnamese news articles into **Negative**, **Neutral** and **Positive**, for media monitoring and public opinion analysis. It covers the full pipeline: crawling articles from **VnExpress**, labeling, fine-tuning **PhoBERT** (a RoBERTa-based model pre-trained for Vietnamese) and evaluating on an imbalanced dataset.
 
-- **Accuracy**: **78.25%**  
-- **F1-weighted**: **0.78**  
-- **F1-macro**: **0.69**
+## 📊 Results
 
-Mô hình thể hiện **độ chính xác cao** ở lớp Tiêu cực và Tích cực, chứng minh khả năng phát hiện cảm xúc đáng tin cậy trên văn bản báo chí tiếng Việt thực tế. Kết quả này khẳng định hiệu quả của PhoBERT trong việc xử lý ngôn ngữ tiếng Việt – ngôn ngữ đơn âm tiết, giàu dấu thanh, ngữ cảnh phức tạp và từ vựng chuyên ngành.
+| Metric | Value |
+|---|---|
+| Accuracy | **78.25%** |
+| F1-weighted | **0.78** |
+| F1-macro | **0.69** |
 
-### Ứng dụng thực tiễn & Tiềm năng phát triển
-Dự án không chỉ dừng ở mô hình học thuật mà mang tính ứng dụng cao trong môi trường thực tế tại Việt Nam:
+The model performs best on the Negative and Positive classes. The gap between weighted and macro F1 reflects the natural class imbalance of news sentiment.
 
-- **Giám sát truyền thông & dư luận**: Phát hiện sớm các làn sóng tiêu cực trên báo chí (ví dụ: khủng hoảng thương hiệu, sự kiện xã hội).
-- **Phân tích tài chính & đầu tư**: Dự báo tác động của tin tức đến thị trường chứng khoán, tiền tệ hoặc bất động sản.
-- **Nghiên cứu truyền thông**: Phân tích thiên kiến báo chí, xu hướng cảm xúc theo thời gian hoặc theo chủ đề (chính trị, kinh tế, y tế...).
-- **Tích hợp hệ thống lớn**: Có thể triển khai vào dashboard thời gian thực, API cho doanh nghiệp, hoặc kết hợp với các công cụ social listening.
+## 🗂️ Dataset
 
-**Tiềm năng phát triển tiếp theo**:
-- Mở rộng dữ liệu từ nhiều nguồn (Tuổi Trẻ, Thanh Niên, Dân Trí...) để tăng độ tổng quát.
-- Thử nghiệm các mô hình mới hơn (PhoBERT-large, ViT5, hoặc multilingual models như XLM-R với fine-tuning).
-- Thêm tính năng aspect-based sentiment analysis (phân tích cảm xúc theo khía cạnh cụ thể trong bài báo).
-- Phát triển phiên bản demo web (Streamlit/Gradio) để người dùng thử nghiệm trực tiếp.
+- **18,900** articles (title + content) crawled from VnExpress
+- 3 labels: Negative / Neutral / Positive
+- Class balancing applied during training
+
+## 🔄 Pipeline
+
+```mermaid
+flowchart LR
+    A[Crawl VnExpress<br/>Selenium + BeautifulSoup] --> B[Labeling]
+    B --> C[EDA]
+    C --> D[PhoBERT tokenization<br/>+ class balancing]
+    D --> E[Fine-tune PhoBERT<br/>PyTorch / Transformers]
+    E --> F[Evaluation<br/>Accuracy · F1 · Confusion matrix]
+```
+
+## 📁 Project Structure
+
+```
+Vietnamese-News-Sentiment-Classification/
+├── data/
+│   ├── data-vnexpress-train.csv       # labeled training data
+│   └── data-vnexpress-analysis.xlsx   # data used for EDA
+├── notebooks/
+│   └── analysis.ipynb                 # exploratory data analysis
+├── scripts/
+│   └── crawl_vnexpress.py             # VnExpress crawler
+└── requirements.txt
+```
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/LinhNhat07/Vietnamese-News-Sentiment-Classification.git
+cd Vietnamese-News-Sentiment-Classification
+pip install -r requirements.txt
+
+# Crawl fresh articles (requires Google Chrome)
+python scripts/crawl_vnexpress.py
+```
+
+## 🔭 Future Work
+
+- More sources (Tuoi Tre, Thanh Nien, Dan Tri) for better generalization
+- Larger or multilingual models (PhoBERT-large, ViT5, XLM-R)
+- Aspect-based sentiment analysis
+- Web demo with Streamlit or Gradio
+
+## 👤 Author
+
+**Nguyen Hong Nhat Linh** – AI Engineer · [GitHub](https://github.com/LinhNhat07) · nlinh.nh7@gmail.com

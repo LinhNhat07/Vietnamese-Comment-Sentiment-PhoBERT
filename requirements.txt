@@ -1,0 +1,12 @@
+pandas
+numpy
+matplotlib
+seaborn
+openpyxl
+selenium
+webdriver-manager
+beautifulsoup4
+torch
+transformers
+scikit-learn
+jupyter
